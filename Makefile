@@ -1,6 +1,5 @@
 POLLEN_TAG := pollen:latest
-POLLEN := docker run --rm \
-	-u $$(id -u):$$(id -g) \
+POLLEN := podman run --rm \
 	--volume "$$(pwd):/work" \
 	-p 8080:8080 \
 	${POLLEN_TAG}
@@ -23,4 +22,4 @@ reset:
 
 .PHONY: image
 image:
-	docker build --tag ${POLLEN_TAG} .
+	buildah build --tag ${POLLEN_TAG} .
